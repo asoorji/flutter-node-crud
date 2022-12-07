@@ -1,14 +1,17 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+
+import '../models/user.dart';
 
 const String baseUrl = 'https://orji-book-api.glitch.me/books';
 
 class BaseClient {
-  var client = http.Client();
+  static var client = http.Client();
 
   //GET
-  Future<dynamic> get(String api) async {
+  Future<dynamic> get() async {
     var url = Uri.parse(baseUrl);
     var _headers = {
       'Authorization': 'Bearer sfie328370428387=',
@@ -17,9 +20,12 @@ class BaseClient {
 
     var response = await client.get(url, headers: _headers);
     if (response.statusCode == 200) {
-      return response.body;
+      var json = response.body;
+      return userFromJson(json);
     } else {
-      //throw exception and catch it in UI
+      return const Center(
+        child: Text('An error occured'),
+      );
     }
   }
 
@@ -67,9 +73,12 @@ class BaseClient {
 
     var response = await client.delete(url, headers: _headers);
     if (response.statusCode == 200) {
-      return response.body;
+      var json = response.body;
+      return userFromJson(json);
     } else {
-      //throw exception and catch it in UI
+      return const Center(
+        child: Text('An error occured - Could not delete'),
+      );
     }
   }
 }
