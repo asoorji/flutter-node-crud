@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     onTap: () async {
                                       setState(() {
-                                        deleteAlbum(posts![index].id!);
+                                        BaseClient().delete(posts![index].id!);
                                         debugPrint(posts![index].id);
                                       });
                                       getData();
