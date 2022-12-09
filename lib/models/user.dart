@@ -8,15 +8,17 @@ String userToJson(List<User> data) =>
 
 class User {
   User({
+    this.id,
     this.name,
     this.body,
   });
 
+  late String? id;
   late String? name;
   late String? body;
 
   factory User.fromJson(Map<String, dynamic> json) =>
-      User(name: json["name"], body: json["body"]);
+      User(id: json["_id"], name: json["name"], body: json["body"]);
 
-  Map<String, dynamic> toJson() => {"name": name, "body": body};
+  Map<String, dynamic> toJson() => {"_id": id, "name": name, "body": body};
 }

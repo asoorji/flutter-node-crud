@@ -82,3 +82,14 @@ class BaseClient {
     }
   }
 }
+
+Future<http.Response> deleteAlbum(String id) async {
+  final http.Response response = await http.delete(
+    Uri.parse('https://orji-book-api.glitch.me/books/$id'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+  );
+
+  return response;
+}

@@ -151,18 +151,7 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   GestureDetector(
                                     child: const Icon(Icons.edit),
-                                    onTap: () async {
-                                      var id = 2;
-                                      var user = User(
-                                          // name: 'Afzal Ali',
-                                          );
-
-                                      var response = await BaseClient()
-                                          .put('/users/$id', user)
-                                          .catchError((err) {});
-                                      if (response == null) return;
-                                      debugPrint('successful:');
-                                    },
+                                    onTap: () async {},
                                   ),
                                   GestureDetector(
                                     child: const Icon(
@@ -170,12 +159,11 @@ class _HomePageState extends State<HomePage> {
                                       color: Colors.red,
                                     ),
                                     onTap: () async {
-                                      var name = 'Yo';
-                                      var response = await BaseClient()
-                                          .delete('/users/$name')
-                                          .catchError((err) {});
-                                      if (response == null) return;
-                                      debugPrint('successful:');
+                                      setState(() {
+                                        deleteAlbum(posts![index].id!);
+                                        debugPrint(posts![index].id);
+                                      });
+                                      getData();
                                     },
                                   ),
                                 ],
